@@ -1,39 +1,38 @@
-#include <iostream>
-using namespace std;
-
-
-
-void Insert(Node* head, int x);
-void Print(Node* head);
+#include <stdio.h>
+#include <stdlib.h>
 
 struct Node {
 	int data;
 	struct Node* next;
 };
 
-Node* head;
-void Insert(Node* head, int x) {
-	Node* temp = new Node();
+struct Node* head;
+
+void Insert(int x) {
+	struct Node* temp = (struct Node* )malloc(sizeof(struct Node));
 	temp->data = x;
-	temp->next = NULL;
-	if (head != NULL) temp->next = NULL;
+	temp->next = head;
 	head = temp;
 
 }
 
-void Print(Node*  head) {
-	Node* temp = head;
-	cout << "List is ";
+void Print() {
+	struct Node* temp = head;
 	while (temp != NULL) {
-		cout << temp->data;
+		printf("%d", temp->data);
 		temp = temp->next;
 	}
+	printf("\n");
 }
 int main() {
 	head = NULL;
-	Insert(head,1);
-	Insert(head,2);
-	Print(head);
-	return 0;
-
+	int n, i, x;
+	printf("How many numbers : ");
+	scanf("%d", &n);
+	for (i = 0; i < n; i++) {
+		printf("Enter: ");
+		scanf("%d", &x);
+		Insert(x);
+		Print(x);
+	}
 }
